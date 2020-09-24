@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% block blogactive %}active{% endblock blogactive %}
+{% block body %}
+<h1 class="text-center py-3">welcome to the codingThunder</h1>
+<hr />
+<div class="container py-4">
+  {% for blog in blogs %}
+  <ul class="list-unstyled">
+    <li class="media py-2">
+      <!-- <img src="..." class="mr-3" alt="..."> -->
+      <div class="media-body">
+        <h3 class="mt-0 mb-1">{{blog.title}}</h3>
+        <p>{{blog.content|slice:200}}....</p>
+        <a
+          href="blogpost/{{blog.slug}}"
+          class="btn btn-outline-primary btn-sm stretched-link"
+          >Read More</a
+        >
+      </div>
+    </li>
+  </ul>
+  {% endfor %}
+  <div class="my-3">
+    {% if prev %}
+    <!-- <button class="btn btn-primary float-left">next</button> -->
+    <a href="/blog?page={{prev}}" class="btn btn-primary float-left">prev</a>
+
+    {% else %}
+    <a href="#" class="btn btn-primary float-left">prev</a>
+    {% endif %} {% if nxt %}
+    <a href="/?page={{nxt}}" class="btn btn-primary float-right">next</a>
+    {% else %}
+    <a href="#" class="btn btn-primary float-right">next</a>
+    {% endif %}
+  </div>
+</div>
+{% endblock body %}
